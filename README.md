@@ -320,7 +320,14 @@ As variáveis categóricas 'state_holiday', 'store_type' e 'assortment' recebera
 
 Por sua vez, as variáveis representativas de dados sazonais, por possuírem natureza circular, receberam codificação trigonométrica<sup>6, 7</sup>. Essa codificação foi aplicada às variáveis: dia, mês, semana do ano, dia da semana, trimestre, bimestre, e quinzena do ano.
 
-## 5.6. Correlação entre variáveis categóricas
+## 5.6. Importância relativa das variáveis
+
+Segundo a literatura (Géron<sup>5</sup>, pg. 221), uma qualidade da <i>random forest</i> é sua capacidade de medir a importância relativa de cada <i>feature</i>. Assim, com essa técnica, foi possível aferir a seguinte importância relativa das variáveis disponíveis, conforme mostrado no gráfico:
+
+![banner](img/feature_importance.png)
+
+
+## 5.7. Correlação entre variáveis categóricas
 
 Por meio da correlação de Cramer é possível estimar a correlação entre variáveis categóricas. A figura a seguir mostra a correlação existente para as variáveis constante da base de dados sob análise.
 
