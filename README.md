@@ -29,7 +29,7 @@ Neste projeto, fizemos uso das seguintes ferramentas e técnicas:
 
 Os dados foram obtidos de uma competição no Kaggle, compreendendo mais de 1 milhão de registros de vendas de mais de mil lojas. Foram testados cinco algoritmos de aprendizado de máquina, e o XGBoost Regressor foi selecionado como o modelo final devido ao seu desempenho superior em métricas como MAE, MAPE e RMSE.
 
-Os produtos finais estão descritos na [Seção 3.1](#31-produto-final): (i) *insights* de negócio, (ii) modelo de *machine learning* e (iii) Robô-Telegram. Os detalhes quando aos resultados dos algoritmos estão apresentados a partir da [Seção 7](#7-resultado-ii-modelo-de-previs%C3%A3o). Para futuras melhorias, o projeto propõe a utilização de estratégias adicionais de ajuste de hiperparâmetros, exploração de novas técnicas de engenharia de características e teste de outros algoritmos de aprendizado de máquina.
+Os produtos finais estão descritos na [Seção 3.1](#31-produto-final): (i) *insights* de negócio, (ii) modelo de *machine learning* e (iii) Robô-Telegram. Os detalhes quando aos resultados dos algoritmos estão apresentados a partir da [Seção 7](#7-resultado-ii-modelo-de-previs%C3%A3o).
 
 Cada seção deste relatório foi elaborada de forma independente, resultando em um texto final relativamente mais extenso.
 
