@@ -19,12 +19,6 @@ PREVISÃO DE FATURAMENTO
 
 # 1. INTRODUCTION
 
-Aqui está a tradução para o inglês do trecho fornecido:
-
----
-
-# 1. INTRODUCTION  
-
 This report describes a Data Science project aimed at developing a regression algorithm using *machine learning* to forecast the revenue of each store in a pharmaceutical retail chain. The project follows the CRISP-DM methodology, ensuring a structured and efficient approach.  
 
 In this project, we utilized the following tools and techniques:  
