@@ -1,7 +1,8 @@
 <h1 align="center">
-REDE DE FARMÁCIAS ROSSMANN<br>
-PREVISÃO DE FATURAMENTO
+REDE DE FARMÁCIAS ROSSMANN<br>PREVISÃO DE FATURAMENTO
 </h1>
+
+<h6>- <a href="README-EN.md">ENGLISH VERSION</a></h6>
 
 ![banner](img/Rossmann03_AI_inside_Mall.jpg)
 
@@ -14,14 +15,32 @@ PREVISÃO DE FATURAMENTO
 <img src="img/Rossmann01.png" alt="place5"/>
 </details>
 
-# 1. A EMPRESA
+# 1. INTRODUÇÃO
+
+Este relatório descreve um projeto de Ciência de Dados que consiste na criação de um algoritmo de regressão utilizando *machine learning* para previsão do faturamento de cada uma das lojas de uma rede farmacêutica. O projeto segue a metodologia CRISP-DM, garantindo uma abordagem estruturada e eficiente.
+
+Neste projeto, fizemos uso das seguintes ferramentas e técnicas:
+
+- VS-Code, Jupyter Notebook, Mini Conda, GitHub, GPT-4
+- Python, Pandas, Numpy, Scikit-Learn, Matplotlib, Seaborn
+- Regressão Linear (simples & Lasso), Random Forest, XGBoost
+- Boruta, Cross-Validation
+- API Flask, API Bot Telegram, hospedagem [Render.com](https://render.com/)
+
+Os dados foram obtidos de uma competição no Kaggle, compreendendo mais de 1 milhão de registros de vendas de mais de mil lojas. Foram testados cinco algoritmos de aprendizado de máquina, e o XGBoost Regressor foi selecionado como o modelo final devido ao seu desempenho superior em métricas como MAE, MAPE e RMSE.
+
+Os produtos finais estão descritos na [Seção 3.1](#31-produto-final): (i) *insights* de negócio, (ii) modelo de *machine learning* e (iii) Robô-Telegram. Os detalhes quando aos resultados dos algoritmos estão apresentados a partir da [Seção 7](#7-resultado-ii-modelo-de-previs%C3%A3o). Para futuras melhorias, o projeto propõe a utilização de estratégias adicionais de ajuste de hiperparâmetros, exploração de novas técnicas de engenharia de características e teste de outros algoritmos de aprendizado de máquina.
+
+Cada seção deste relatório foi elaborada de forma independente, resultando em um texto final relativamente mais extenso.
+
+
+# 2. A EMPRESA & O PROBLEMA DE NEGÓCIO
 
 Conforme informa a [Wikipedia](https://en.wikipedia.org/wiki/Rossmann_(company))<sup>1</sup>, a empresa Rossmann, ou, mais especificamente, Dirk Rossmann GmbH, é uma cadeia de lojas farmacêuticas fundada em 1972 e sediada em Burgwedel, na Alemanha. No seu histórico de [maiores realizações](https://unternehmen.rossmann.de/ueber-uns/unsere-geschichte.html)<sup>2</sup>, a empresa ressalta os seguintes feitos somente em 2023:
+
 1. Alcançou o 16º lugar na lista [Forbes](https://www.forbes.com/lists/worlds-best-employers/?sh=4a53ed2f1e0c) das melhores empresas do mundo para se trabalhar em 2023<sup>3</sup>, bem assim o 3º lugar entre as empresas na Alemanha.
 2. Seus produtos passaram a fazer parte das mais de 1500 lojas das redes SPAR, EUROSPAR e INTERSPAR, com abrangência na Áustria, Hungria, Eslovênia, Croácia e norte da Itália.
 3. Iniciou cooperação com a cadeia chinesa de supermercados FRESHIPPO, do Grupo Alibaba, passando seus produtos a serem encontrados em mais de 300 filiais FRESHIPPO naquele país asiático.
-
-# 2. O PROBLEMA DE NEGÓCIO
 
 Atualmente, aos gerentes de loja é dada a tarefa de realizarem a previsão de suas vendas diárias para as próximos seis semanas. As vendas das lojas são influenciadas por muitos fatores, incluindo promoções, concorrência, feriados escolares e feriados estaduais, sazonalidades, e situações locais. Com milhares de gerentes individuais predizendo vendas com base em suas circunstâncias específicas, a acurácia dos resultados pode variar bastante.
 
@@ -67,22 +86,51 @@ Nesta seção busca-se compreender as peculiaridades dos dados existentes. Os da
 </table>
 
 
-A partir do simples planilhamento (excel) desses arquivos, é possível constatar várias características, conforme se descreve a seguir.
+A partir do planilhamento (excel) desses arquivos, é possível constatar várias características, conforme se descreve a seguir.
 
 ## 4.1. O Arquivo STORE.CSV
 
 O arquivo STORE.CSV consiste num cadastro de lojas contendo 1.115 registros, com as informações relativas às características de cada loja a ser estudada. Suas 10 colunas trazem os seguintes atributos:
 
-| ATRIBUTO | DESCRIÇÃO E OBSERVAÇÕES |
-|-----------|-----------|
-| Store | Identificador único de cada loja. A tabela contém 1.115 lojas numeradas de 1 a 1.115, portanto, sem duplicidade. |
-| StoreType | Indica os tipos de lojas. A base contém 4 tipos: <b>A</b> (602 lojas), <b>B</b> (17), <b>C</b> (148) e <b>D</b> (348) |
-| Assortment | (sortimento) indica o nível de variedade do estoque, sendo: <b>A</b> = básico (593 lojas), <b>B</b> = extra (9), <b>C</b> = estendido (513).  |
-| CompetitionDistance | Distância em metros do concorrente mais próximo |
-| CompetitionOpenSince [Month/Year] | São duas colunas indicando o ano e o mês aproximado em que o concorrente mais próximo foi aberto |
-| Promo2 | É uma promoção contínua e consecutiva para algumas lojas. O atributo apresenta os seguintes valores: <b>1</b> = a loja está participando do programa promo2 (571 lojas), <b>0</b> = a loja não está participando da promo2 (544 lojas) |
-| Promo2Since [Year/Week] | São duas colunas indicando o ano e a semana em que a loja começou a participar da Promo2 |
-| PromoInterval | Indica os intervalos mensais consecutivos em que a promoção 'Promo2' é iniciada, com indicação dos meses em que a promoção é reiniciada. Por exemplo, "fev, maio, agosto, novembro" significa que cada rodada começa em fevereiro, maio, agosto e novembro de qualquer ano para aquela loja |
+<table align="center">
+  <tr>
+    <th align="center">ATRIBUTO</th>
+    <th>DESCRIÇÃO E OBSERVAÇÕES</th>
+  </tr>
+  <tr>
+    <td align="center">Store</td>
+    <td>Identificador único de cada loja. A tabela contém 1.115 lojas numeradas de 1 a 1.115, portanto, sem duplicidade.</td>
+  </tr>
+  <tr>
+    <td align="center">StoreType</td>
+    <td>Indica os tipos de lojas. A base contém 4 tipos: <b>A</b> (602 lojas), <b>B</b> (17), <b>C</b> (148) e <b>D</b> (348).</td>
+  </tr>
+  <tr>
+    <td align="center">Assortment</td>
+    <td>(Sortimento) indica o nível de variedade do estoque, sendo: <b>A</b> = básico (593 lojas), <b>B</b> = extra (9), <b>C</b> = estendido (513).</td>
+  </tr>
+  <tr>
+    <td align="center">CompetitionDistance</td>
+    <td>Distância em metros do concorrente mais próximo.</td>
+  </tr>
+  <tr>
+    <td align="center">CompetitionOpenSince [Month/Year]</td>
+    <td>São duas colunas indicando o ano e o mês aproximado em que o concorrente mais próximo foi aberto.</td>
+  </tr>
+  <tr>
+    <td align="center">Promo2</td>
+    <td>É uma promoção contínua e consecutiva para algumas lojas. O atributo apresenta os seguintes valores: <b>1</b> = a loja está participando do programa Promo2 (571 lojas), <b>0</b> = a loja não está participando da Promo2 (544 lojas).</td>
+  </tr>
+  <tr>
+    <td align="center">Promo2Since [Year/Week]</td>
+    <td>São duas colunas indicando o ano e a semana em que a loja começou a participar da Promo2.</td>
+  </tr>
+  <tr>
+    <td align="center">PromoInterval</td>
+    <td>Indica os intervalos mensais consecutivos em que a promoção 'Promo2' é iniciada, com indicação dos meses em que a promoção é reiniciada. Por exemplo, "fev, maio, agosto, novembro" significa que cada rodada começa em fevereiro, maio, agosto e novembro de qualquer ano para aquela loja.</td>
+  </tr>
+</table>
+
 
 (Fonte: [Kaggle](https://www.kaggle.com/competitions/rossmann-store-sales), Rossmann Store Sales<sup>4</sup>)
 
@@ -147,19 +195,51 @@ Ao juntar a informação de sortimento, observa-se que:
 
 ## 4.2. O Arquivo TRAIN.CSV
 
-O arquivo TRAIN.CSV possui pouco mais de um milhão de linhas, com informações de caráter temporal, ou seja, dados do histórico diário de vendas de cada loja. O conjunto de dados contém os seguintes 9 atributos:
+O arquivo TRAIN.CSV possui pouco mais de um milhão de linhas, com informações de caráter temporal, ou seja, dados do histórico diário de vendas de cada loja. O conjunto de dados contém os seguintes nove atributos:
 
-| ATRIBUTO | DESCRIÇÃO |
-|-----------|-----------|
-| Store | Chave estrangeira indicadora de cada loja (de 1 a 1.115) |
-| DayOfWeek | Dia da semana, contendo valores numéricos de 1 (segunda-feira) a 7 (domingo). |
-| Date | O dia em que as vendas ocorreram. Os valores vão de 01/01/2013 a 31/07/2015.  |
-| Sales | Volume de vendas do dia |
-| Customers | Número de clientes desse dia |
-| Open | Indicador se a loja está fechada (0) ou aberta (1) nessa data |
-| Promo | Indica se a loja está fazendo uma promoção esporádica naquele dia |
-| StateHoliday | Indica feriado estadual. Normalmente, as lojas fecham nos feriados estaduais. Note-se que todas as escolas fecham em feriados públicose fins de semana. Tem-se: A = feriado público, B = feriado de Páscoa, C = Natal, 0 = não é feriado |
-| SchoolHoliday | Feriado escolar. Indica se o registro (Loja+Data) foi afetado pelo fechamento de escolas públicas |
+<table align="center">
+  <tr>
+    <th align="center">ATRIBUTO</th>
+    <th>DESCRIÇÃO</th>
+  </tr>
+  <tr>
+    <td align="center">Store</td>
+    <td>Chave estrangeira indicadora de cada loja (de 1 a 1.115).</td>
+  </tr>
+  <tr>
+    <td align="center">DayOfWeek</td>
+    <td>Dia da semana, contendo valores numéricos de <b>1 (segunda-feira)</b> a <b>7 (domingo)</b>.</td>
+  </tr>
+  <tr>
+    <td align="center">Date</td>
+    <td>O dia em que as vendas ocorreram. Os valores vão de <b>01/01/2013 a 31/07/2015</b>.</td>
+  </tr>
+  <tr>
+    <td align="center">Sales</td>
+    <td>Volume de vendas do dia.</td>
+  </tr>
+  <tr>
+    <td align="center">Customers</td>
+    <td>Número de clientes desse dia.</td>
+  </tr>
+  <tr>
+    <td align="center">Open</td>
+    <td>Indicador se a loja está <b>fechada (0) ou aberta (1)</b> nessa data.</td>
+  </tr>
+  <tr>
+    <td align="center">Promo</td>
+    <td>Indica se a loja está fazendo uma <b>promoção esporádica</b> naquele dia.</td>
+  </tr>
+  <tr>
+    <td align="center">StateHoliday</td>
+    <td>Indica <b>feriado estadual</b>. Normalmente, as lojas fecham nos feriados estaduais. Todas as escolas fecham em feriados públicos e fins de semana. Possíveis valores: <b>A = feriado público, B = feriado de Páscoa, C = Natal, 0 = não é feriado</b>.</td>
+  </tr>
+  <tr>
+    <td align="center">SchoolHoliday</td>
+    <td><b>Feriado escolar</b>. Indica se o registro (<b>Loja + Data</b>) foi afetado pelo fechamento de escolas públicas.</td>
+  </tr>
+</table>
+
 
 (Fonte: [Kaggle](https://www.kaggle.com/competitions/rossmann-store-sales), Rossmann Store Sales<sup>4</sup>)
 
@@ -178,16 +258,45 @@ No presente projeto, o arquivo TEST.CSV tem seus dados utilizados na etapa de pr
 
 O arquivo contém os seguintes atributos:
 
-| ATRIBUTO | DESCRIÇÃO |
-|-----------|-----------|
-| Id | Identificador representativo de Loja+Data |
-| Store | Identificador único de cada loja |
-| DayOfWeek | Dia da semana, contendo valores numéricos de 1 (segunda-feira) a 7 (domingo) |
-| Date | Data à qual o registro se refere. Os valores vão de 01/08/2015 a 17/09/2015.  |
-| Open | Indicador se a loja está fechada (0) ou aberta (1) |
-| Promo | Indica se a loja está fazendo uma promoção naquele dia |
-| StateHoliday | Indica feriado estadual. Normalmente, as lojas fecham nos feriados estaduais. Note-se que todas as escolas fecham em feriados públicose fins de semana. Tem-se: A = feriado público, B = feriado de Páscoa, C = Natal, 0 = não é feriado |
-| SchoolHoliday | Feriado escolar. Indica se o registro (Loja+Data) foi afetado pelo fechamento de escolas públicas |
+<table align="center">
+  <tr>
+    <th align="center">ATRIBUTO</th>
+    <th>DESCRIÇÃO</th>
+  </tr>
+  <tr>
+    <td align="center">Id</td>
+    <td>Identificador representativo de <b>Loja + Data</b>.</td>
+  </tr>
+  <tr>
+    <td align="center">Store</td>
+    <td>Identificador único de cada loja.</td>
+  </tr>
+  <tr>
+    <td align="center">DayOfWeek</td>
+    <td>Dia da semana, contendo valores numéricos de <b>1 (segunda-feira)</b> a <b>7 (domingo)</b>.</td>
+  </tr>
+  <tr>
+    <td align="center">Date</td>
+    <td>Data à qual o registro se refere. Os valores vão de <b>01/08/2015 a 17/09/2015</b>.</td>
+  </tr>
+  <tr>
+    <td align="center">Open</td>
+    <td>Indicador se a loja está <b>fechada (0) ou aberta (1)</b>.</td>
+  </tr>
+  <tr>
+    <td align="center">Promo</td>
+    <td>Indica se a loja está fazendo uma <b>promoção</b> naquele dia.</td>
+  </tr>
+  <tr>
+    <td align="center">StateHoliday</td>
+    <td>Indica <b>feriado estadual</b>. Normalmente, as lojas fecham nos feriados estaduais. Todas as escolas fecham em feriados públicos e fins de semana. Possíveis valores: <b>A = feriado público, B = feriado de Páscoa, C = Natal, 0 = não é feriado</b>.</td>
+  </tr>
+  <tr>
+    <td align="center">SchoolHoliday</td>
+    <td><b>Feriado escolar</b>. Indica se o registro (<b>Loja + Data</b>) foi afetado pelo fechamento de escolas públicas.</td>
+  </tr>
+</table>
+
 
 (Fonte: [Kaggle](https://www.kaggle.com/competitions/rossmann-store-sales), Rossmann Store Sales<sup>4</sup>)
 
@@ -213,6 +322,7 @@ Há possibilidade de, em próximos aperfeiçoamentos, testar a utilização de o
 ## 5.2. Feature engineering
 
 A partir dos dados originais (descritos no tópico 4, acima), foram derivadas novas <i>features</i> capazes de retratar:
+
 - o programa de promoções continuadas (promo2),
 - a presença de outros concorrentes de mercado (competition),
 - as sazonalidades semanais, mensais e outras,
@@ -268,12 +378,16 @@ A figura retrata essas features e sua evolução no tempo para o caso da loja n�
 - SAZONALIDADES: a partir do campo 'data' foram criadas <i>features</i> indicativas de: ano, mês, dia, semestre, trimestre, bimestre, quinzena do mês, quinzena do ano e semana do ano. 
 - ASSORTMENT: os valores foram trocados, de A B C para "basic", "extra", "extended".
 - STATE_HOLIDAY: os valores relativos aos feriados foram trocados, de 0 A B C, para "regular_day", "public_holiday", "easter_holiday", "christmas".
-- FATURAMENTO POR CLIENTE: foi criada a <i>feature</i> 'sales_per_customer', indicando a relação sales/customers para o faturamento diário de cada loja. OBS: esta <i>feature</i> teve papel importante na etapa de análise do negócio, não sendo levada à etapa de <i>machine learning</i> por restrição do negócio.
+- FATURAMENTO POR CLIENTE: foi criada a <i>feature</i> 'sales_per_customer', indicando a relação sales/customers para o faturamento diário de cada loja.
+
+OBS: esta <i>feature</i> teve papel importante na etapa de análise do negócio, não sendo levada à etapa de <i>machine learning</i> por restrição do negócio.
 
 
 ## 5.3. Normalização da variável alvo
 
-A variável alvo é 'sales' (volume de vendas do dia), informação disponível no arquivo TRAIN.CSV (tópico 4.2). Por inspeção, constata-se a existência de assimetria positiva. Nesses casos, a literatura (por exemplo, Aurelién Géron<sup>5</sup>, pg. 76-77) sugere a aplicação de correção por meio de utilização da função raiz quadrada ou, para assimetrias mais intensas, a função logarítmica.
+A variável alvo é 'sales' (volume de vendas do dia), informação disponível no arquivo TRAIN.CSV (tópico 4.2). Por inspeção, constata-se a existência de assimetria positiva. 
+
+Nesses casos, a literatura (por exemplo, Aurelién Géron<sup>5</sup>, pg. 76-77) sugere a aplicação de correção por meio de utilização da função raiz quadrada ou, para assimetrias mais intensas, a função logarítmica.
 
 A figura mostra a distribuição original, bem assim as transformações citadas.
 
@@ -314,6 +428,7 @@ Por inspeção desses resultados, optou-se pelo uso da transformação logarítm
 ## 5.5. Transformação de variáveis categóricas
 
 As variáveis categóricas 'state_holiday', 'store_type' e 'assortment' receberam o seguinte tratamento:
+
 - 'state_holiday': one hot encoding
 - 'store_type': label encoding
 - 'assortment': ordinal encoding
@@ -486,6 +601,7 @@ O trabalho de construção do modelo de <i>machine learning</i> foi dividido nas
 ## 7.1. Algoritmos de <i>Machine Learning</i>
 
 Numa primeira etapa, os seguintes algoritmos foram testados:
+
 - Média simples por loja
 - Regressão Linear
 - Regressão Linear regularizada - Lasso
@@ -584,7 +700,11 @@ Para avaliação do desempenho do modelo de <i>machine learning</i> fez-se a com
 
 ![banner](img/desempenho_ml.png)
 
-O primeiro gráfico traz a plotagem das duas curvas - vendas e predições - permitindo conferir sua proximidade por inspeção. O segundo gráfico, em forma de sino, resulta da diferença algébrica entre vendas e predições, mostrando que a maioria das ocorrências se situam em torno de zero e indicando a existência de situações em que as duas grandezas diferem. A terceira plotagem é da razão [predição / vendas], sendo superior à unidade quando as predições superam as vendas, e vice-versa, conforme sinalizado no gráfico.
+O primeiro gráfico traz a plotagem das duas curvas - vendas e predições - permitindo conferir sua proximidade por inspeção.
+
+O segundo gráfico, em forma de sino, resulta da diferença algébrica entre vendas e predições, mostrando que a maioria das ocorrências se situam em torno de zero e indicando a existência de situações em que as duas grandezas diferem.
+
+A terceira plotagem é da razão [predição / vendas], sendo superior à unidade quando as predições superam as vendas, e vice-versa, conforme sinalizado no gráfico.
 
 
 # 8. RESULTADO-III: O ROBÔ-TELEGRAM
@@ -696,7 +816,10 @@ Após ter obtido o acesso ao Robô-Telegram por meio do [link](https://t.me/mlmm
 
 Por meio do presente projeto foi feita a análise de negócio da Rede de Farmácias Rossmann, com o objetivo de se construir um preditor de faturamento por loja.
 
-Como resultado do trabalho, obteve-se: (i) a elaboração de insights de negócio a partir dos dados, (ii) a construção de uma máquina preditora usando regressão não-linear por meio do algoritmo XGBoost de <i>machine learning</i>, e (iii) a construção de um robô-telegram para obtenção de informações de previsão pelo usuário em tempo real.
+Como resultado do trabalho, obteve-se:
+(i) a elaboração de insights de negócio a partir dos dados,
+(ii) a construção de uma máquina preditora usando regressão não-linear por meio do algoritmo XGBoost de <i>machine learning</i>, e
+(iii) a construção de um robô-telegram para obtenção de informações de previsão pelo usuário em tempo real.
 
 
 # 10. PRÓXIMOS PASSOS
