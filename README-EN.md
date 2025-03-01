@@ -846,25 +846,7 @@ To access the Telegram bot, click the link: https://t.me/mlmm_rossmann_bot.
 The next two sections present: (i) A project summary and (ii) The user manual for the bot.
 
 
-## 8.1. O Projeto do Robô-Telegram
-
-O robô-telegram é uma ferramenta para acesso às previsões de faturamento das lojas Rossmann. Assim, conforme ilustra a figura, o usuário pode interagir com o robô por meio do aplicativo Telegram em seu telefone celular, usando um conjunto de comandos para assim obter as informações gerenciais de que necessita.
-
-![banner](img/Rossmann%20Telegram.png)
-
-A estrutura do robô inclui a utilização de duas API (acrônimo para <i>Application Programming Interface</i>) responsáveis:
-
-- (i) pela "interface homem-máquina" e
-- (ii) pela execução em tempo real do modelo de <i>machine learning</i> para previsão de faturamento das lojas.
-
-A primeira interface - ROSSMANN API - contém a interação com o aplicativo Telegram e o código para análise e resposta aos comandos enviados pelo usuário. Caso seja identificado o comando de usuário para fornecimento da previsão de faturamento de uma loja, ou de um rol de lojas, então a API ROSSMANN encaminha comando de acionamento da interface para execução dos cálculos de previsão.
-
-A segunda interface - <i>MACHINE LEARNING</i> API - executa a máquina de previsão a partir de comando enviado pela API ROSSMANN. A interação entre as duas API é iniciada pela remessa de um conjunto de dados de entrada para a máquina de previsão, no seguinte formato em JSON (exemplo para a loja 14):
-
-
-
-
-## **8.1. The Telegram Bot Project**  
+## 8.1. The Telegram Bot Project  
 
 The Telegram bot is a tool for accessing Rossmann store revenue forecasts. As illustrated in the figure below, users can interact with the bot through the Telegram app on their mobile phones, using a set of commands to obtain the management information they need.  
 
