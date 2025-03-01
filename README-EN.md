@@ -1,6 +1,5 @@
 <h1 align="center">
-REDE DE FARMÁCIAS ROSSMANN<br>
-PREVISÃO DE FATURAMENTO
+ROSSMANN DRUGSTORE CHAIN<br>REVENUE FORECASTING
 </h1>
 
 <h6>- <a href="README.md">VERSÃO EM PORTUGUÊS</a></h6>
@@ -31,7 +30,7 @@ In this project, we utilized the following tools and techniques:
 
 The data was sourced from a Kaggle competition, comprising over one million sales records from more than a thousand stores. Five machine learning algorithms were tested, and the XGBoost Regressor was selected as the final model due to its superior performance in metrics such as MAE, MAPE, and RMSE.  
 
-The final deliverables are outlined in [Section 3.1](#31-final-product): (i) business insights, (ii) a *machine learning* model, and (iii) a Telegram Bot. Details on the algorithm results are presented from [Section 7](#7-result-ii-forecasting-model) onward.  
+The final deliverables are listed in [Section 3.1](#31-final-product): (i) business insights, (ii) a *machine learning* model, and (iii) a Telegram Bot. Details on the algorithm results are presented from [Section 7](#7-result-ii-forecasting-model) onward.  
 
 Each section of this report was developed independently, resulting in a relatively more extensive final document.  
 
