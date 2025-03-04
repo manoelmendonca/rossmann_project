@@ -21,11 +21,11 @@ Este relatório descreve um projeto de Ciência de Dados que consiste na criaç�
 
 Neste projeto, fizemos uso das seguintes ferramentas e técnicas:
 
-- VS-Code, Jupyter Notebook, Mini Conda, GitHub, GPT-4
-- Python, Pandas, Numpy, Scikit-Learn, Matplotlib, Seaborn
-- Regressão Linear (simples & Lasso), Random Forest, XGBoost
-- Boruta, Cross-Validation
-- API Flask, API Bot Telegram, hospedagem [Render.com](https://render.com/)
+- **Ferramentas**: VS-Code, Jupyter Notebook, Mini Conda, GitHub, GPT-4
+- **Programação & Bibliotecas**: Python, Pandas, Numpy, Scikit-Learn, Matplotlib, Seaborn
+- **Modelos de Machine Learning**: Regressão Linear (simples & Lasso), Random Forest, XGBoost
+- **Seleção de Features & Validação**: Boruta, Cross-Validation
+- **Deployment & API**: API Flask, API Bot Telegram, hospedagem [Render.com](https://render.com/)
 
 Os dados foram obtidos de uma competição no Kaggle, compreendendo mais de 1 milhão de registros de vendas de mais de mil lojas. Foram testados cinco algoritmos de aprendizado de máquina, e o XGBoost Regressor foi selecionado como o modelo final devido ao seu desempenho superior em métricas como MAE, MAPE e RMSE.
 
