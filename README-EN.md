@@ -18,7 +18,7 @@ ROSSMANN DRUGSTORE CHAIN<br>REVENUE FORECASTING
 
 # 1. INTRODUCTION
 
-This report describes a Data Science project aimed at developing a regression algorithm using *machine learning* to forecast the revenue of each store in a pharmaceutical retail chain. The project follows the CRISP-DM methodology, ensuring a structured and efficient approach.  
+This report describes a Data Science project aimed at developing a **Regression Algorithm** using machine learning to forecast the revenue of each store in a pharmaceutical retail chain. The project follows the CRISP-DM methodology, ensuring a structured and efficient approach.  
 
 In this project, we utilized the following tools and techniques:  
 

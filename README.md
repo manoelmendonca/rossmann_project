@@ -17,7 +17,7 @@ REDE DE FARMÁCIAS ROSSMANN<br>PREVISÃO DE FATURAMENTO
 
 # 1. INTRODUÇÃO
 
-Este relatório descreve um projeto de Ciência de Dados que consiste na criação de um algoritmo de regressão utilizando *machine learning* para previsão do faturamento de cada uma das lojas de uma rede farmacêutica. O projeto segue a metodologia CRISP-DM, garantindo uma abordagem estruturada e eficiente.
+Este relatório descreve um projeto de Ciência de Dados que consiste na criação de um **Algoritmo de Regressão** utilizando *machine learning* para previsão do faturamento de cada uma das lojas de uma rede farmacêutica. O projeto segue a metodologia CRISP-DM, garantindo uma abordagem estruturada e eficiente.
 
 Neste projeto, fizemos uso das seguintes ferramentas e técnicas:
 
