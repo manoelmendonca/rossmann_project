@@ -19,7 +19,7 @@ REDE DE FARMÁCIAS ROSSMANN<br>PREVISÃO DE FATURAMENTO
 
 Este relatório descreve um projeto de Ciência de Dados que consiste na criação de um **Algoritmo de Regressão** utilizando *machine learning* para previsão do faturamento de cada uma das lojas de uma rede farmacêutica. O projeto segue a metodologia CRISP-DM, garantindo uma abordagem estruturada e eficiente.
 
-Neste projeto, fizemos uso das seguintes ferramentas e técnicas:
+Resumindo, neste projeto fizemos uso das seguintes ferramentas e técnicas:
 
 - **Ferramentas**: VS-Code, Jupyter Notebook, Mini Conda, GitHub, GPT-4
 - **Programação & Bibliotecas**: Python, Pandas, Numpy, Scikit-Learn, Matplotlib, Seaborn
@@ -30,8 +30,6 @@ Neste projeto, fizemos uso das seguintes ferramentas e técnicas:
 Os dados foram obtidos de uma competição no Kaggle, compreendendo mais de 1 milhão de registros de vendas de mais de mil lojas. Foram testados cinco algoritmos de aprendizado de máquina, e o XGBoost Regressor foi selecionado como o modelo final devido ao seu desempenho superior em métricas como MAE, MAPE e RMSE.
 
 Os produtos finais estão listados na [Seção 3.1](#31-produto-final): (i) *insights* de negócio, (ii) modelo de *machine learning* e (iii) Robô-Telegram. Os detalhes quando aos resultados dos algoritmos estão apresentados a partir da [Seção 7](#7-resultado-ii-modelo-de-previs%C3%A3o).
-
-Cada seção deste relatório foi elaborada de forma independente, resultando em um texto final relativamente mais extenso.
 
 
 # 2. A EMPRESA & O PROBLEMA DE NEGÓCIO

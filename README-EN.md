@@ -20,7 +20,7 @@ ROSSMANN DRUGSTORE CHAIN<br>REVENUE FORECASTING
 
 This report describes a Data Science project aimed at developing a **Regression Algorithm** using machine learning to forecast the revenue of each store in a pharmaceutical retail chain. The project follows the CRISP-DM methodology, ensuring a structured and efficient approach.  
 
-In this project, we utilized the following tools and techniques:  
+In summary, in this project, we utilized the following tools and techniques:  
 
 - **Tools**: VS-Code, Jupyter Notebook, Mini Conda, GitHub, GPT-4  
 - **Programming & Libraries**: Python, Pandas, Numpy, Scikit-Learn, Matplotlib, Seaborn  
@@ -31,8 +31,6 @@ In this project, we utilized the following tools and techniques:
 The data was sourced from a Kaggle competition, comprising over one million sales records from more than a thousand stores. Five machine learning algorithms were tested, and the XGBoost Regressor was selected as the final model due to its superior performance in metrics such as MAE, MAPE, and RMSE.  
 
 The final deliverables are listed in [Section 3.1](#31-final-product): (i) business insights, (ii) a *machine learning* model, and (iii) a Telegram Bot. Details on the algorithm results are presented from [Section 7](#7-result-ii-forecasting-model) onward.  
-
-Each section of this report was developed independently, resulting in a relatively more extensive final document.  
 
 
 # 2. THE COMPANY & THE BUSINESS PROBLEM
