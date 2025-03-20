@@ -457,7 +457,7 @@ In this figure, the colors seem to indicate the presence of four quadrants. This
 
 The process of generating insights related to daily store sales began with a brainstorming session to map out the characteristics of the business. This involved considering attributes related to **stores, location, products, customers, and calendar-related factors**. The idea is visually represented in the following mind map:  
 
-![banner](img/MindMapHypothesis.png)  
+![banner](img/MindMapHypothesisEN.png)  
 
 From this map, several hypotheses were formulated. Below is a list of the hypotheses that were tested using numerical analysis:  
 

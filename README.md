@@ -452,7 +452,7 @@ Nessa figura, as cores parecem indicar a existência de quatro quadrantes. Isso 
 
 O processo de criação de <i>insights</i> relacionados ao fenômeno de vendas diárias das lojas iniciou-se por um <i>brainstorming</i> para mapeamento das características do negócio. Para isso, foram levados em conta os atributos relacionados às lojas, sua localização, produtos, clientes e aspectos relativos ao calendário. A ideia pode ser visualizada a partir do seguinte mapa mental:
 
-![banner](img/MindMapHypothesis.png)
+![banner](img/MindMapHypothesisEN.png)
 
 A partir deste mapa, foram elaboradas diversas hipóteses. Abaixo estão listadas as hipóteses submetidas a pesquisa numérica:
 
@@ -621,6 +621,104 @@ Como resultado, o seguinte desempenho foi obtido para cada algoritmo:
 | MAPE CV | -             | 0.12+/-0.03      | 0.13+/-0.02      | 0.31+/-0.02      | 0.29+/-0.01      | 
 | RMSE    |  1835.136     | 1015.273         | 1029.747         | 2659.116         | 2746.044         | 
 | RMSE CV | -             | 1292.31+/-391.93 | 1363.02+/-272.64 | 2938.95+/-445.8  | 3062.87+/-502.05 | 
+
+NOVA TABELA:
+
+<table align="center">
+    <thead>
+        <tr>
+            <th>MODELO</th>
+            <th>MAE</th>
+            <th>MAPE</th>
+            <th>RMSE</th>
+            <th>MAE CV</th>
+            <th>MAPE CV</th>
+            <th>RMSE CV</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Random Forest Regressor</td>
+            <td align="center">705.200687</td>
+            <td align="center">0.098105</td>
+            <td align="center">1040.952730</td>
+            <td align="center">857.25 +/- 254.56</td>
+            <td align="center">0.12 +/- 0.03</td>
+            <td align="center">1292.8 +/- 393.88</td>
+        </tr>
+        <tr>
+            <td>XGBoost Regressor</td>
+            <td align="center">787.571129</td>
+            <td align="center">0.109993</td>
+            <td align="center">1117.234721</td>
+            <td align="center">947.68 +/- 195.0</td>
+            <td align="center">0.13 +/- 0.02</td>
+            <td align="center">1366.44 +/- 285.35</td>
+        </tr>
+        <tr>
+            <td>Average Model</td>
+            <td align="center">1256.126110</td>
+            <td align="center">0.194500</td>
+            <td align="center">1688.302409</td>
+            <td align="center">-</td>
+            <td align="center">-</td>
+            <td align="center">-</td>
+        </tr>
+        <tr>
+            <td>CatBoost Regressor</td>
+            <td align="center">1310.933928</td>
+            <td align="center">0.177246</td>
+            <td align="center">1890.319607</td>
+            <td align="center">1367.44 +/- 233.3</td>
+            <td align="center">0.19 +/- 0.01</td>
+            <td align="center">1987.94 +/- 354.14</td>
+        </tr>
+        <tr>
+            <td>LightGBM Regressor</td>
+            <td align="center">1433.506179</td>
+            <td align="center">0.194803</td>
+            <td align="center">2054.701957</td>
+            <td align="center">1492.14 +/- 218.38</td>
+            <td align="center">0.2 +/- 0.01</td>
+            <td align="center">2154.33 +/- 311.41</td>
+        </tr>
+        <tr>
+            <td>ExtraTrees Regressor</td>
+            <td align="center">1747.790045</td>
+            <td align="center">0.236164</td>
+            <td align="center">2517.785044</td>
+            <td align="center">1801.83 +/- 273.92</td>
+            <td align="center">0.25 +/- 0.01</td>
+            <td align="center">2590.42 +/- 412.14</td>
+        </tr>
+        <tr>
+            <td>Linear Regression</td>
+            <td align="center">1971.019911</td>
+            <td align="center">0.286735</td>
+            <td align="center">2815.226566</td>
+            <td align="center">2062.82 +/- 299.67</td>
+            <td align="center">0.3 +/- 0.01</td>
+            <td align="center">2945.94 +/- 465.73</td>
+        </tr>
+        <tr>
+            <td>Linear Regression - Lasso</td>
+            <td align="center">2015.160808</td>
+            <td align="center">0.280097</td>
+            <td align="center">2926.881510</td>
+            <td align="center">2113.15 +/- 329.48</td>
+            <td align="center">0.29 +/- 0.01</td>
+            <td align="center">3063.61 +/- 481.16</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
 
 Como se pode observar, o algoritmo RANDOM FOREST foi o que trouxe o melhor resultado, seguido de perto pelo algoritmo XGBOOST. Deste modo, considerando os limites existentes em termos de memória necessária na nuvem para colocar o modelo em produção, optou-se pelo modelo XGBOOST para a versão final do projeto.
 
